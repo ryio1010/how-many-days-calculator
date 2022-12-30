@@ -1,47 +1,34 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <AppTitle/>
+  <CalculatorForm @submit-form="calculateHowManyDays"/>
+  <CalculateResult :calculateResults="calculateResults"/>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup lang="ts">
+import AppTitle from "@/components/AppTitle.vue";
+import CalculatorForm from "@/components/CalculatorForm.vue";
+import CalculateResult from "@/components/CalculateResult.vue";
+import {reactive} from "vue";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const calculateResults = reactive({
+  calculateTitle: "",
+  content: "",
+});
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+const calculateHowManyDays = (
+    title: string,
+    baseDateString: string,
+    plusDaysString: string
+) => {
+  if (!title || !baseDateString || !plusDaysString) {
+    return;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+  const baseDate = new Date(baseDateString);
+  const plusDays = parseInt(plusDaysString);
+  baseDate.setDate(baseDate.getDate() + plusDays);
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+  calculateResults.calculateTitle = title;
+  calculateResults.content = `${baseDateString}の${plusDaysString}日後は${baseDate.toLocaleDateString()}です！`
+};
+</script>
