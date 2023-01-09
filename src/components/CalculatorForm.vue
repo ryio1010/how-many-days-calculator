@@ -1,9 +1,15 @@
 <template>
   <form @submit.prevent="submitForm">
-    <input type="text" v-model="title" placeholder="タイトル">
-    <input type="date" v-model="baseDate" placeholder="日付">
-    <input type="number" v-model="plusDays" placeholder="日後">
-    <button type="submit">Check How Many Days!</button>
+    <div>
+      <input type="text" class="form_title form_component" v-model="title" placeholder="タイトル">
+    </div>
+    <div>
+      <input type="date" class="form_baseDate form_component" v-model="baseDate" placeholder="日付">
+      <input type="number" class="form_plusDays form_component" v-model="plusDays" placeholder="日後">
+    </div>
+    <div>
+      <button type="submit">Check How Many Days!</button>
+    </div>
   </form>
 </template>
 
