@@ -1,4 +1,4 @@
 <template>
-  <h1>How Many Days Calculator</h1>
-  <p>基準日からN日目が何月何日か確認できます！</p>
+  <h1 class="title">How Many Days Calculator</h1>
+  <p class="description">基準日N日後が何月何日か計算します！！</p>
 </template>
